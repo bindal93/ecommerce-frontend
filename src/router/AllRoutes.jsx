@@ -5,7 +5,7 @@ import Homepage from "../components/Homepage/Homepage";
 import FooterComp from "../components/pages/Footer";
 import Login from "../components/pages/Login";
 import Signup from "../components/pages/Signup";
-import PageNotFound from "../components/Product/404";
+import PageNotFound from "../components/pages/404";
 import NewProduct from "../components/Product/NewProduct";
 import SingleProduct from "../components/Product/SingleProduct";
 import { BrowserRouter } from "react-router-dom";
