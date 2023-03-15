@@ -19,7 +19,11 @@ const HomeNavbar = () => {
   const debounceOnChange = useCallback(debounce(handleSearch, 400), []);
 
   function handleSearch(e) {
-    if (e.target.value) navigate(`/products/${e.target.value}`);
+    if (e.target.value) {
+      navigate(`/products/${e.target.value}`);
+    } else {
+      navigate(`/products`);
+    }
   }
   return (
     <div>
