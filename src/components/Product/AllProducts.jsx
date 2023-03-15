@@ -10,7 +10,8 @@ export default function AllProducts() {
   const [query, setQuery] = useState("");
   const [sortdata, setSortdata] = useState("");
   const [page, setPage] = useState(1);
-  let url = `https://dailybackend.onrender.com/products?maincategory=new arrivals&page=${page}&${category}&sort=${sortdata}`;
+  //TODO API integration
+  let url = `http://192.168.1.3:5000/api/v1/products${category ? `?product=${category}` : ""}`;
   let { loading, error, list } = useFetch(query, page, url);
   const loader = useRef(null);
   const handleObserver = useCallback((entries) => {
@@ -24,12 +25,13 @@ export default function AllProducts() {
     const option = {
       root: null,
       rootMargin: "20px",
-      threshold: 0,
+      threshold: 0
     };
     const observer = new IntersectionObserver(handleObserver, option);
     if (loader.current) observer.observe(loader.current);
   }, [handleObserver]);
 
+  list =  [...new Map(list.map(item => [item["title"], item])).values()];
   if (query) {
     list = list.filter((elem) => elem.category === query);
   }
@@ -40,17 +42,12 @@ export default function AllProducts() {
   }
   return (
     <>
-      <Header
-        title="All Products"
-        query={query}
-        setQuery={setQuery}
-        setSortdata={setSortdata}
-      />
+      <Header title="All Products" query={query} setQuery={setQuery} setSortdata={setSortdata} />
       <Grid
         templateColumns={{
           lg: "repeat(4, 1fr)",
           md: "repeat(3,1fr)",
-          base: "repeat(1,1fr)",
+          base: "repeat(1,1fr)"
         }}
         gap={6}
         p="0 2rem"
@@ -61,19 +58,8 @@ export default function AllProducts() {
         <div ref={loader} />
       </Grid>
       {loading && (
-        <VStack
-          w="100%"
-          minH="500px"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Spinner
-            thickness="5px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
+        <VStack w="100%" minH="500px" alignItems="center" justifyContent="center">
+          <Spinner thickness="5px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
         </VStack>
       )}
       {error && <p>Error!</p>}

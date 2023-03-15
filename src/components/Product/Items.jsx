@@ -1,11 +1,8 @@
 import { Box, Card, CardFooter, Image, Stack, Text } from "@chakra-ui/react";
-import axios from "axios";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styles from "./Items.module.css";
 
 export default function Items({ data }) {
-  const user = null;
-  const uid = user?._id || "";
   const ref = useRef(null);
   const ChangeImage1 = () => {
     ref.current.src = data.img1;
@@ -13,23 +10,6 @@ export default function Items({ data }) {
   const ChangeImage = () => {
     ref.current.src = data.img2;
   };
-  useEffect(() => {
-    const getuser = async (id) => {
-      const newuser = await axios.get(
-        `https://dailybackend.onrender.com/user/${id}`
-      );
-      if (
-        newuser &&
-        newuser.data &&
-        newuser.data.user &&
-        newuser.data.user.length > 0
-      ) {
-        const loginuser = newuser.data.user[0];
-        loginuser && localStorage.setItem("user", JSON.stringify(loginuser));
-      }
-    };
-    getuser(uid);
-  }, [uid]);
 
   return (
     <Card w="100%" m="auto" mt={10} position="relative" borderRadius={20}>

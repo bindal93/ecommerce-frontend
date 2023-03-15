@@ -9,10 +9,14 @@ function useFetch(query, page, url) {
       await setLoading(true);
       await setError(false);
 
-      const res = await axios.get(url);
-      await setList((prev) => [
-        ...new Set([...prev, ...res.data.products.map((d) => d)]),
-      ]);
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("@token"),
+          "Content-Type": "application/json",
+          "access-control-allow-origin": "*"
+        }
+      });
+      await setList(() => [...new Set([...res.data.products.map((d) => d._source)])]);
       setLoading(false);
     } catch (err) {
       setError(err);

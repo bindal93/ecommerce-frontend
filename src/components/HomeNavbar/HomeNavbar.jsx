@@ -1,9 +1,26 @@
+import { Input } from "@chakra-ui/react";
+import { useCallback } from "react";
 import { FiSearch } from "react-icons/fi";
 import { ImUser } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
-
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    const context = this;
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      timeout = null;
+      func.apply(context, args);
+    }, wait);
+  };
+}
 const HomeNavbar = () => {
   const navigate = useNavigate();
+  const debounceOnChange = useCallback(debounce(handleSearch, 400), []);
+
+  function handleSearch(e) {
+    if (e.target.value) navigate(`/products/${e.target.value}`);
+  }
   return (
     <div>
       <div className="navbar">
@@ -14,8 +31,21 @@ const HomeNavbar = () => {
           />
         </div>
         <div className="navUser">
+          <Input
+            placeholder="Search"
+            _placeholder={{ color: "gray.500" }}
+            type="text"
+            name="search"
+            id="search"
+            onChange={(e) => debounceOnChange(e)}
+          />
+          <FiSearch
+            size={25}
+            onClick={() => {
+              navigate("/products");
+            }}
+          />
           <ImUser size={25} onClick={() => navigate("/login")} />
-          <FiSearch size={25} onClick={() => navigate("/")} />
         </div>
       </div>
       <img

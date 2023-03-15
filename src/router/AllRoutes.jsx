@@ -53,6 +53,16 @@ const AllRoutes = () => {
             </>
           }
         ></Route>
+        <Route
+          path="/products"
+          element={
+            <>
+              <HomeNavbar />
+              <AllProducts />
+              <FooterComp />
+            </>
+          }
+        ></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </BrowserRouter>
