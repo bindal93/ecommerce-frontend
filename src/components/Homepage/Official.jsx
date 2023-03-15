@@ -11,7 +11,7 @@ const Official = () => {
         <div>
           <Swiper
             autoplay={{
-              delay: 500
+              delay: 500,
             }}
             slidesPerView={"4"}
             coverflowEffect={{
@@ -19,7 +19,7 @@ const Official = () => {
               stretch: 0,
               depth: 100,
               modifier: 1,
-              slideShadows: true
+              slideShadows: true,
             }}
             effect={"coverflow"}
             modules={[EffectCoverflow, Autoplay]}
@@ -37,7 +37,10 @@ const Official = () => {
       <br />
       <hr />
       <div>
-        <p style={{ margin: "2.5rem 0rem", textAlign: "center" }} className="h2">
+        <p
+          style={{ margin: "2.5rem 0rem", textAlign: "center" }}
+          className="h2"
+        >
           FEATURED IN
         </p>
         <img

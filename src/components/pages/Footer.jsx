@@ -7,7 +7,7 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  VisuallyHidden
+  VisuallyHidden,
 } from "@chakra-ui/react";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 
@@ -34,7 +34,7 @@ const SocialButton = ({ children, label, href }) => {
       justifyContent={"center"}
       transition={"background 0.3s ease"}
       _hover={{
-        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200")
+        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>

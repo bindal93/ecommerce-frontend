@@ -6,7 +6,7 @@ import {
   Heading,
   Input,
   Stack,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ const Signup = () => {
     const { name, value } = e.target;
     setSignup({
       ...signup,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -31,8 +31,8 @@ const Signup = () => {
       method: "POST",
       body: JSON.stringify(signup),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
       .then((res) => res.json())
       .then((res) => {
@@ -43,7 +43,7 @@ const Signup = () => {
             status: "success",
             duration: 2000,
             position: "top",
-            isClosable: true
+            isClosable: true,
           });
           navigate("/login");
         } else {
@@ -52,7 +52,7 @@ const Signup = () => {
             status: "error",
             duration: 2000,
             position: "top",
-            isClosable: true
+            isClosable: true,
           });
           navigate("/login");
         }
@@ -116,7 +116,11 @@ const Signup = () => {
 
               <FormControl isRequired pb={"20px"}>
                 <FormLabel fontSize={"18px"}>Password</FormLabel>
-                <Input type="password" name="password" onChange={handleChange} />
+                <Input
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                />
               </FormControl>
 
               <Stack spacing={6} alignItems={"center"}>
@@ -125,7 +129,7 @@ const Signup = () => {
                   bg={"green.700"}
                   color={"white"}
                   _hover={{
-                    bg: "green.600"
+                    bg: "green.600",
                   }}
                   type="submit"
                 >
@@ -140,7 +144,7 @@ const Signup = () => {
                   bg={"green.700"}
                   color={"white"}
                   _hover={{
-                    bg: "green.600"
+                    bg: "green.600",
                   }}
                 >
                   Click to go Login Page

@@ -6,11 +6,11 @@ import {
   Heading,
   Input,
   Stack,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { auth, firebase } from "../firebase/firebase";
 const Login = () => {
   const [login, SetLogin] = useState({});
   const [isAuth, setIsAuth] = useState(false);
@@ -21,9 +21,14 @@ const Login = () => {
   let authObj = {
     isAuth: false,
     isAuthError: false,
-    isAuthLoading: false
+    isAuthLoading: false,
   };
-  if (authObjStr && authObjStr !== "null" && authObjStr !== "undefined" && authObjStr !== "{}") {
+  if (
+    authObjStr &&
+    authObjStr !== "null" &&
+    authObjStr !== "undefined" &&
+    authObjStr !== "{}"
+  ) {
     authObj = JSON.parse(authObjStr);
     setIsAuth(authObj.isAuth);
     setIsAuthError(authObj.isAuthError);
@@ -37,18 +42,33 @@ const Login = () => {
     const { name, value } = e.target;
     SetLogin({
       ...login,
-      [name]: value
+      [name]: value,
     });
   };
-  const HandleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log(login);
-    setIsAuth(true);
-    setIsAuthError(false);
-    setIsAuthLoading(false);
     localStorage.setItem("loginUser", JSON.stringify(login));
-  };
-
+    await googleLogin();
+  }
+  async function googleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    await auth.signInWithPopup(provider).then(
+      async (result) => {
+        const token = await auth?.currentUser?.getIdToken(true);
+        if (token) {
+          localStorage.setItem("@token", token);
+          setIsAuth(true);
+          setIsAuthError(false);
+          setIsAuthLoading(false);
+          navigate("/");
+        }
+      },
+      function (error) {
+        console.log(error);
+      }
+    );
+  }
   useEffect(() => {
     if (isAuth) {
       if (state === null) {
@@ -58,9 +78,8 @@ const Login = () => {
           status: "success",
           duration: 2000,
           position: "top",
-          isClosable: true
+          isClosable: true,
         });
-        navigate("/");
       } else if (state !== null) {
         navigate(state.from, { replace: true });
         return toast({
@@ -69,7 +88,7 @@ const Login = () => {
           status: "success",
           duration: 2000,
           position: "top",
-          isClosable: true
+          isClosable: true,
         });
       }
     }
@@ -80,7 +99,7 @@ const Login = () => {
         status: "error",
         duration: 2000,
         position: "top",
-        isClosable: true
+        isClosable: true,
       });
     }
   }, [isAuth, isAuthError]);
@@ -100,7 +119,7 @@ const Login = () => {
           <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
             Login
           </Heading>
-          <form style={{ width: "100%" }} onSubmit={HandleSubmit}>
+          <form style={{ width: "100%" }} onSubmit={(e) => handleSubmit(e)}>
             <FormControl id="email" isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Email address</FormLabel>
               <Input
@@ -122,7 +141,7 @@ const Login = () => {
                 bg={"green.700"}
                 color={"white"}
                 _hover={{
-                  bg: "green.600"
+                  bg: "green.600",
                 }}
                 type="submit"
               >
@@ -137,7 +156,7 @@ const Login = () => {
                 bg={"green.700"}
                 color={"white"}
                 _hover={{
-                  bg: "green.600"
+                  bg: "green.600",
                 }}
               >
                 Click to go Register Page

@@ -6,8 +6,7 @@ import FooterComp from "../components/pages/Footer";
 import Login from "../components/pages/Login";
 import Signup from "../components/pages/Signup";
 import PageNotFound from "../components/pages/404";
-import NewProduct from "../components/Product/NewProduct";
-import SingleProduct from "../components/Product/SingleProduct";
+import AllProducts from "../components/Product/AllProducts";
 import { BrowserRouter } from "react-router-dom";
 
 const AllRoutes = () => {
@@ -45,21 +44,11 @@ const AllRoutes = () => {
           }
         ></Route>
         <Route
-          path="/newarrival"
+          path="/products/:category"
           element={
             <>
               <HomeNavbar />
-              <NewProduct />
-              <FooterComp />
-            </>
-          }
-        ></Route>
-        <Route
-          path="/products/:id"
-          element={
-            <>
-              <HomeNavbar />
-              <SingleProduct />
+              <AllProducts />
               <FooterComp />
             </>
           }

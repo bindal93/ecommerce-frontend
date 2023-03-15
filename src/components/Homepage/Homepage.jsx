@@ -1,4 +1,10 @@
-import { Grid, GridItem, Heading, Image, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  Heading,
+  Image,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Autoplay, Navigation } from "swiper";
 import "swiper/css";
@@ -20,14 +26,17 @@ const Homepage = () => {
       >
         <GridItem className="cat_one">
           <p>SHOP CATEGORIES</p>
-          <p>Now browse our selection of carefully curated products in sorted categories.</p>
+          <p>
+            Now browse our selection of carefully curated products in sorted
+            categories.
+          </p>
         </GridItem>
         <GridItem className="cat_two">
           <Swiper
             slidesPerView={slideCount}
             spaceBetween={20}
             autoplay={{
-              delay: 1000
+              delay: 1000,
             }}
             modules={[Navigation, Autoplay]}
             navigation={isDesktop}
@@ -60,7 +69,7 @@ const Homepage = () => {
         templateColumns={{
           base: "repeat(1, 1fr)",
           md: "repeat(2, 1fr)",
-          lg: "repeat(3, 1fr)"
+          lg: "repeat(3, 1fr)",
         }}
         gap={6}
         className="shopCollections"
@@ -71,7 +80,10 @@ const Homepage = () => {
             alt=""
           />
           <p>DREAMSCAPE</p>
-          <p>A vivid dream journal that lets you carry your daydreaming stance into real life.</p>
+          <p>
+            A vivid dream journal that lets you carry your daydreaming stance
+            into real life.
+          </p>
           <p>
             <Link className="coll_link" to="/">
               Shop Now
@@ -84,7 +96,10 @@ const Homepage = () => {
             alt=""
           />
           <p>ZODIAC</p>
-          <p>A vivid dream journal that lets you carry your daydreaming stance into real life.</p>
+          <p>
+            A vivid dream journal that lets you carry your daydreaming stance
+            into real life.
+          </p>
           <p>
             <Link className="coll_link" to="/">
               Shop Now
@@ -98,8 +113,8 @@ const Homepage = () => {
           />
           <p>PIXEL</p>
           <p>
-            A reflection of modern pop-culture, this collection has a vintage appeal that evokes
-            nostalgia.
+            A reflection of modern pop-culture, this collection has a vintage
+            appeal that evokes nostalgia.
           </p>
           <p>
             <Link className="coll_link" to="/">
@@ -127,7 +142,7 @@ const Homepage = () => {
             slidesPerView={slideCount}
             spaceBetween={20}
             autoplay={{
-              delay: 1000
+              delay: 1000,
             }}
             modules={[Navigation, Autoplay]}
             navigation={isDesktop}
@@ -148,7 +163,7 @@ const Homepage = () => {
         templateColumns={{
           base: "repeat(1, 1fr)",
           md: "repeat(1, 1fr)",
-          lg: "repeat(2, 1fr)"
+          lg: "repeat(2, 1fr)",
         }}
         gap={"10"}
         className="shopCollections"
@@ -184,7 +199,7 @@ const Homepage = () => {
         templateColumns={{
           base: "repeat(1, 1fr)",
           md: "repeat(2, 1fr)",
-          lg: "repeat(3, 1fr)"
+          lg: "repeat(3, 1fr)",
         }}
         gap={6}
         className="shopCollections"
@@ -196,8 +211,8 @@ const Homepage = () => {
           />
           <p>08:01 COLLECTION</p>
           <p>
-            Features a range of chroniclers that let you preserve all brief encounters on your
-            journey.
+            Features a range of chroniclers that let you preserve all brief
+            encounters on your journey.
           </p>
           <p>
             <Link className="coll_link" to="/">
@@ -211,7 +226,10 @@ const Homepage = () => {
             alt=""
           />
           <p>AMCART X SMARTSTERS</p>
-          <p>A playful and functional range of indoor desk and storage solutions for children.</p>
+          <p>
+            A playful and functional range of indoor desk and storage solutions
+            for children.
+          </p>
           <p>
             <Link className="coll_link" to="/">
               Shop Now
@@ -224,7 +242,10 @@ const Homepage = () => {
             alt=""
           />
           <p>TARP COLLECTION</p>
-          <p>Urban-inspired carriers, made for free-spirited and powerful wearers.</p>
+          <p>
+            Urban-inspired carriers, made for free-spirited and powerful
+            wearers.
+          </p>
           <p>
             <Link className="coll_link" to="/">
               Shop Now
@@ -249,7 +270,7 @@ const Homepage = () => {
         templateColumns={{
           base: "repeat(1, 1fr)",
           md: "repeat(1, 1fr)",
-          lg: "repeat(2, 1fr)"
+          lg: "repeat(2, 1fr)",
         }}
         gap="50"
         className="ourStory"
@@ -257,13 +278,14 @@ const Homepage = () => {
         <GridItem>
           <h2 className="h1">OUR STORY</h2>
           <p>
-            Founded in 2012, AMCART is a design-obsessed lifestyle accessories brand committed to
-            making your everyday carry #lessordinary.
+            Founded in 2012, AMCART is a design-obsessed lifestyle accessories
+            brand committed to making your everyday carry #lessordinary.
           </p>
           <p>
-            You can look forward to a carefully-crafted range of products, made from long-lasting
-            materials, with designs that stand out and make your life easy. With AMCART, let your
-            lifestyle reflect your sensibilities as you go on to make your every day #lessordinary.
+            You can look forward to a carefully-crafted range of products, made
+            from long-lasting materials, with designs that stand out and make
+            your life easy. With AMCART, let your lifestyle reflect your
+            sensibilities as you go on to make your every day #lessordinary.
           </p>
           <p>
             <Link className="coll_link" to="/">
