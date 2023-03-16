@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
         - name: frontend-shivam
-          image: nagpshivam/i-shivam:latest
+          image: nagpshivam/ecom-frontend:latest
           ports:
             - name: http
               containerPort: 3000
