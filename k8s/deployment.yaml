@@ -34,7 +34,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend-shivam
+      app: frontend-shivam
   template:
     metadata:
       labels:
