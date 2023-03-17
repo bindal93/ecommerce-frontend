@@ -44,7 +44,7 @@ spec:
         - name: frontend-shivam
           image: nagpshivam/ecom-frontend:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           envFrom:
           - configMapRef:
               name: frontend-configmap-shivam
@@ -64,5 +64,5 @@ spec:
     app: frontend-shivam
   ports:
   - name: http
-    port: 3000
-    targetPort: 3000
+    port: 80
+    targetPort: 80
