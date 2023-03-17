@@ -16,7 +16,13 @@ function useFetch(query, page, url) {
           "access-control-allow-origin": "*"
         }
       });
-      await setList(() => [...new Set([...res.data.products.map((d) => d._source)])]);
+      await setList(() => {
+        if (res?.data?.products?.length > 0) {
+          return [...new Set([...res.data.products.map((d) => d._source)])];
+        } else {
+          return [];
+        }
+      });
       setLoading(false);
     } catch (err) {
       setError(err);
