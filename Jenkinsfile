@@ -1,13 +1,13 @@
 pipeline {
   agent any
   environment {
-    scannerHome = tool 'SonarQubeScanner'
-    username='admin'
-    appName='nagp-shivam-frontend'
-    sonarAppName='sonar-shivambindal'
-    clusterName='nagp-shivam-frontend'
-    gcloudProject='My First Project'
+    clusterName='cluster-1'
+    gcloudProject='long-way-379611'
     zone='us-central1-c'
+    CLOUDSDK_CORE_PROJECT='long-way-379611'
+    GCLOUD_CREDS=credentials('gcloud-creds')
+    dockerUsr='nagpshivam'
+    dockerPwd='dckr_pat_SHIZiJ3k32kWGJVyTN87s8Basmc'
   }
   tools {
     nodejs 'nodejs'
@@ -15,22 +15,17 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        bat 'npm i'
-      }
-    }
-    stage('Sonarqube Analysis') {
-      steps {
-        echo "Starting sonarqube analysis"
-        withSonarQubeEnv('Test_Sonar') {
-          bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${sonarAppName}"
-        }
+        sh 'npm i'
+        sh 'docker build -t nagpshivam/ecom-frontend:latest .'
+        sh 'docker login -u ${dockerUsr} -p ${dockerPwd}'
+        sh 'docker push nagpshivam/ecom-frontend:latest'
       }
     }
     stage('Kubernetes Deployment') {
       steps {
-        // bat 'gcloud auth login'
-        // bat "gcloud container clusters get-credentials ${clusterName} --zone ${zone} --project ${gcloudProject}"
-        bat 'kubectl apply -f k8s/deployment.yaml'
+        sh 'gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"'
+        sh "gcloud container clusters get-credentials ${clusterName} --zone ${zone} --project ${gcloudProject}"
+        sh 'kubectl apply -f k8s/deployment.yaml'
       }
     }
   }
