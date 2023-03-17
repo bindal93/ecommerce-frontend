@@ -1,7 +1,7 @@
 import { Image } from "@chakra-ui/react";
 import { Autoplay, EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import officialArr from "../../officialArr.json";
+import officialArr from "../../assets/officialArr.json";
 
 const Official = () => {
   return (
