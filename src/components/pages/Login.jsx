@@ -8,7 +8,7 @@ import {
   Stack,
   useToast,
 } from "@chakra-ui/react";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { firebaseConfig } from "../firebase/firebaseConfig";

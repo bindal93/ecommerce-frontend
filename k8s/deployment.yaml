@@ -22,7 +22,7 @@ spec:
           ports:
             - containerPort: 80
           envFrom:
-          - configMapRef:
-              name: frontend-configmap-shivam
-          - secretRef:
-              name: frontend-secret-shivam
+            - configMapRef:
+                name: frontend-configmap-shivam
+            - secretRef:
+                name: frontend-secret-shivam
