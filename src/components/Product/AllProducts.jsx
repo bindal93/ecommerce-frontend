@@ -11,7 +11,7 @@ export default function AllProducts() {
   const [sortdata, setSortdata] = useState("");
   const [page, setPage] = useState(1);
   //TODO API integration
-  let url = `http://34.132.190.255:5000/api/v1/products${category ? `?product=${category}` : ""}`;
+  let url = `http://35.223.85.48:5000/api/v1/products${category ? `?product=${category}` : ""}`;
   let { loading, error, list } = useFetch(query, page, url);
   const loader = useRef(null);
   const handleObserver = useCallback((entries) => {
