@@ -8,9 +8,10 @@ import {
   Stack,
   useToast,
 } from "@chakra-ui/react";
+import firebase from "firebase";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { auth, firebase } from "../firebase/firebase";
+import { firebaseConfig } from "../firebase/firebaseConfig";
 const Login = () => {
   const [login, SetLogin] = useState({});
   const [isAuth, setIsAuth] = useState(false);
@@ -52,10 +53,15 @@ const Login = () => {
     await googleLogin();
   }
   async function googleLogin() {
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider).then(
-      async (result) => {
-        const token = await auth?.currentUser?.getIdToken(true);
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        return auth?.currentUser?.getIdToken(true);
+      })
+      .then((token) => {
         if (token) {
           localStorage.setItem("@token", token);
           setIsAuth(true);
@@ -63,11 +69,10 @@ const Login = () => {
           setIsAuthLoading(false);
           navigate("/");
         }
-      },
-      function (error) {
+      })
+      .catch((error) => {
         console.log(error);
-      }
-    );
+      });
   }
   useEffect(() => {
     if (isAuth) {

@@ -13,8 +13,8 @@ function useFetch(query, page, url) {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("@token"),
           "Content-Type": "application/json",
-          "access-control-allow-origin": "*"
-        }
+          "access-control-allow-origin": "*",
+        },
       });
       await setList(() => {
         if (res?.data?.products?.length > 0) {
