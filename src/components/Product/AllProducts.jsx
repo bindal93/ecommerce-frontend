@@ -4,7 +4,7 @@ import Header from "./Header";
 import Items from "./Items";
 import useFetch from "./hooks";
 import { useParams } from "react-router";
-import { NODE_APP_URL } from "../../../config";
+import { NODE_APP_URL } from "../../config";
 
 export default function AllProducts() {
   let { category } = useParams();
