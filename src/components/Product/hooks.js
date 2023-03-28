@@ -14,8 +14,8 @@ function useFetch(query, page, url) {
           Authorization: "Bearer " + localStorage.getItem("@token"),
           "Content-Type": "application/json",
           "access-control-allow-origin": "*",
-          accept: "application/json, text/plain, */*"
-        }
+          accept: "application/json, text/plain, */*",
+        },
       });
       await setList(() => {
         if (res?.data?.products?.length > 0) {

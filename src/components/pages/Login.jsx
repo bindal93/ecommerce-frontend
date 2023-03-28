@@ -125,7 +125,7 @@ const Login = () => {
             Login
           </Heading>
           <form style={{ width: "100%" }} onSubmit={(e) => handleSubmit(e)}>
-            <FormControl id="email" isRequired pb={"20px"}>
+            {/* <FormControl id="email" isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Email address</FormLabel>
               <Input
                 placeholder="your-email@dailysope.com"
@@ -138,7 +138,7 @@ const Login = () => {
             <FormControl id="password" isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Password</FormLabel>
               <Input type="password" name="password" onChange={handlechange} />
-            </FormControl>
+            </FormControl> */}
             <Stack spacing={6} alignItems={"center"}>
               <Button
                 isLoading={isAuthLoading}

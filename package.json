@@ -32,7 +32,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "firebase": "firebase login",
-    "firebase-deploy": "firebase init"
+    "firebase-deploy": "firebase init",
+    "prettier": "npx prettier --write src/**"
   },
   "eslintConfig": {
     "extends": [
