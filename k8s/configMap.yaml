@@ -6,7 +6,7 @@ metadata:
   labels:
     app: frontend-shivam
 data:
-  BACKEND_URL: "http://35.223.85.48:5000/"
+  BACKEND_URL: "https://34.160.132.112/"
 
 ---
 apiVersion: v1
@@ -18,5 +18,4 @@ metadata:
     app: frontend-shivam
 data:
   ELASTIC_USERNAME: "ZWxhc3RpYw=="
-  ELASTIC_PASSWORD: "UT1XSDRUY1lXV2lUcmJ3RlNjZDk="
 type: Opaque
