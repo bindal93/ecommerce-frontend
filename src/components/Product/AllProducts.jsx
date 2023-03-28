@@ -4,6 +4,7 @@ import Header from "./Header";
 import Items from "./Items";
 import useFetch from "./hooks";
 import { useParams } from "react-router";
+import { NODE_APP_URL } from "../../../config";
 
 export default function AllProducts() {
   let { category } = useParams();
@@ -11,9 +12,7 @@ export default function AllProducts() {
   const [sortdata, setSortdata] = useState("");
   const [page, setPage] = useState(1);
   //TODO API integration
-  let url = `https://34.160.132.112/api/v1/products${
-    category ? `?product=${category}` : ""
-  }`;
+  let url = `${NODE_APP_URL}${category ? `?product=${category}` : ""}`;
   let { loading, error, list } = useFetch(query, page, url);
   const loader = useRef(null);
   const handleObserver = useCallback((entries) => {
